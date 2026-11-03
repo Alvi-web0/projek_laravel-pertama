@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('products', function () {
+Route::get('/', function () {
     return view('products.index');
 });
