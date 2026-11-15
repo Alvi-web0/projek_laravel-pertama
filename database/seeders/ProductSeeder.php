@@ -14,6 +14,7 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
+
         DB::table('products')->insert([
             [
                 'image' => 'Laptop-asus-rog.jpg',
@@ -35,6 +36,6 @@ class ProductSeeder extends Seeder
             ],
         ]);
 
-        // Product::factory()=>count(10)->create();
+        Product::factory()->count(10)->create();
     }
 }
