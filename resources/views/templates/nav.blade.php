@@ -129,9 +129,9 @@
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="assets/assets/img/user2-160x160.jpg"
-                  class="user-image rounded-circle shadow"
-                  alt="Alexander Pierce"
+                    src="{{ url('/assets/assets/img/user2-160x160.jpg') }}"
+                    class="user-image rounded-circle shadow"
+                    alt="Alexander Pierce"
                 />
                 <span class="d-none d-xl-inline">Alexander Pierce</span>
               </a>
@@ -139,7 +139,7 @@
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="assets/assets/img/user2-160x160.jpg"
+                    src="{{ url('/assets/assets/img/user2-160x160.jpg') }}"
                     class="rounded-circle shadow"
                     alt="Alexander Pierce"
                   />

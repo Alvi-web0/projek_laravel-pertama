@@ -9,3 +9,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('products', ProductController::class);
 Route::get('api/products', [ProductController::class, 'apiData'])->name('products.api');
+
+Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
+    ->name('products.edit');
+
+Route::put('/products/{id}', [ProductController::class, 'update'])
+    ->name('products.update');

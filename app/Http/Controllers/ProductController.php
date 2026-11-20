@@ -35,7 +35,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $image = null;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('products', 'public');  
+        }
+
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'description' => $request->description,
+            'image' => $image,  
+        ]);
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product successfully added!');
     }
 
     /**
@@ -51,7 +74,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -59,7 +84,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $data = $request->only([
+            'name',
+            'price',
+            'stock',
+            'description',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')
+                ->store('products', 'public');
+        }
+
+        $product->update($data);
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product successfully updated!');
     }
 
     /**
