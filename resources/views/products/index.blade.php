@@ -9,7 +9,7 @@
 @section('content')
 <div class="app-content-header">
     <div class="container-fluid">
-        <h1 class="mb-0 fs-3">List Products</h1>
+        <h1 class="mb-0 fs-1">List Products</h1>
     </div>
 </div>
 

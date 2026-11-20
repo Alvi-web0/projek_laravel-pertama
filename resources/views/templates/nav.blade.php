@@ -246,15 +246,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./widgets/small-box.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Member</p>
-                    </a>
+                      <a href="{{ route('members.index') }}" class="nav-link">
+                          <i class="nav-icon bi bi-circle"></i>
+                          <p>Member</p>
+                      </a>
                   </li>
                   <li class="nav-item">
                     <a href="./widgets/info-box.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Categorues</p>
+                      <p>Categories</p>
                     </a>
                   </li>
                   <li class="nav-item">
