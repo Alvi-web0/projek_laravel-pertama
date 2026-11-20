@@ -139,23 +139,40 @@
             width: 120,
           },
           {
-            title: 'aksi',
-            field: 'id',
-            formatter: function(cell) {
-              var id = cell.getValue();
-              var editUrl = "{{ url('products') }}/" + id + "/edit";
+              title: 'Aksi',
+              field: 'id',
+              formatter: function(cell) {
+                  var id = cell.getValue();
 
-              //membuat tombol edit dan delete manual di dalam tabulor
-              return`
-              <a href="${editUrl}" class="btn btn-success">Edit</a>
-              <button onclick="deleteProduct(${id})" class="btn btn-danger">hapus</button>`;
-            },
+                  var editUrl = "{{ url('products') }}/" + id + "/edit";
+                  var deleteUrl = "{{ url('products') }}/" + id;
+
+                  return `
+                      <a href="${editUrl}" class="btn btn-success btn-sm">
+                          </i> Edit
+                      </a>
+
+                      <form action="${deleteUrl}"
+                            method="POST"
+                            class="d-inline"
+                            onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+
+                          <input type="hidden" name="_token"
+                                value="{{ csrf_token() }}">
+
+                          <input type="hidden" name="_method"
+                                value="DELETE">
+
+                          <button type="submit" class="btn btn-danger btn-sm">
+                              Hapus
+                          </button>
+                      </form>
+                  `;
+              },
             headerSort: false,
-            borderless: true,
-
             width: 200,
             hozAlign: 'center',
-          },
+        },
         ],
         });
 

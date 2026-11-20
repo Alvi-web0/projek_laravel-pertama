@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 // Route::get('products', function () {
 //     return view('products.index');
@@ -15,3 +16,6 @@ Route::get('/products/{id}/edit', [ProductController::class, 'edit'])
 
 Route::put('/products/{id}', [ProductController::class, 'update'])
     ->name('products.update');
+
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])
+    ->name('products.destroy');

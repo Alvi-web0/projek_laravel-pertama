@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\models\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -115,8 +116,19 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Hapus gambar produk jika ada
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        // Hapus data produk
+        $product->delete();
+
+        return redirect()->route('products.index')
+            ->with('success', 'Produk berhasil dihapus!');
     }
 }
